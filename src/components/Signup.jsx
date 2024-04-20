@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
+const BASE_URL = 'http://192.168.138.46:8080/';
 const Signup = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -10,23 +11,18 @@ const Signup = () => {
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
-    // Handle input changes for signup form
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
 
-        // Clear errors when changing input
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: null,
         }));
     };
 
-    // Handle form submission for signup
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Validate form data
 
         try {
             await signup(formData);
@@ -37,12 +33,12 @@ const Signup = () => {
             });
             navigate('/login');
         } catch (error) {
-            setErrors({ form: error.message });
+            setErrors({form: error.message});
         }
     };
 
     // Function to validate form data
-    
+
 
     // API call for signup
     const signup = async (data) => {
@@ -65,30 +61,13 @@ const Signup = () => {
             const responseData = await response.json();
             console.log('Signed up successfully:', responseData);
 
-            const { token } = responseData;
+            const {token} = responseData;
             if (token) {
                 localStorage.setItem('jwtToken', token);
             }
 
         } catch (error) {
             throw new Error('Signup failed: ' + error.message);
-        }
-    };
-
-    // API call for checking if email or username already exists
-    const checkIfExists = async (field, value) => {
-        try {
-            const response = await fetch(`/api/check-${field}-exists?${field}=${value}`);
-            const data = await response.json();
-
-            if (data.exists) {
-                setErrors((prevErrors) => ({
-                    ...prevErrors,
-                    [field]: `${field.charAt(0).toUpperCase() + field.slice(1)} already exists`,
-                }));
-            }
-        } catch (error) {
-            console.error(`Failed to check ${field}:`, error);
         }
     };
 

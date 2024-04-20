@@ -1,46 +1,34 @@
-import React from 'react';
-import { RouterProvider, createBrowserRouter, Navigate } from 'react-router-dom';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Home from './components/Home';
-import Python from './components/Python';
-import ReactPage from './components/ReactPage';
-import Java from './components/Java';
-
-import { isAuthenticated } from './utils/isAuthenticated'; // Import the authentication check function
-
-const router = createBrowserRouter([
-    {
-        path: '/',
-        // element: isAuthenticated ? <Home /> : <Navigate to="/login" />, // Protect the root route
-        element: true ? <Home /> : <Navigate to="/login" />,
-        children: [
-          {
-              path: 'python',
-              element: <Python />,
-          },
-          {
-              path: 'java',
-              element: <Java />,
-          },
-          {
-              path: 'react',
-              element: <ReactPage />,
-          },
-      ], 
-    },
-    {
-        path: '/signup',
-        element: <Signup />,
-    },
-    {
-        path: '/login',
-        element: <Login />,
-    },
-]);
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Home from "./components/Home.jsx";
+import Python from "./components/Python.jsx";
+import Java from "./components/Java.jsx";
+import ReactPage from "./components/ReactPage.jsx";
+import Signup from "./components/Signup.jsx";
+import Login from "./components/Login.jsx"; // Assuming router is exported
 
 const App = () => {
-    return <RouterProvider router={router} />;
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        // isAuthenticated() ? (
+                        //     <Home />
+                        // ) : (
+                        //     <Navigate to="/login" replace /> // Use replace to prevent infinite loops
+                        // )
+                        <Home/>
+                    }
+                />
+                <Route path="/python" element={<Python/>}/>
+                <Route path="/java" element={<Java/>}/>
+                <Route path="/react" element={<ReactPage/>}/>
+                <Route path="/signup" element={<Signup/>}/>
+                <Route path="/login" element={<Login/>}/>
+            </Routes>
+        </BrowserRouter>
+    );
 };
 
 export default App;

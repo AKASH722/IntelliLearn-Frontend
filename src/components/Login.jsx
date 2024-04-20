@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+
+const BASE_URL = 'http://192.168.138.46:8080/';
+
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -10,38 +13,31 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Redirect to home if already logged in
         const token = localStorage.getItem('jwtToken');
         if (token) {
             navigate('/');
         }
     }, [navigate]);
 
-    // Handle input changes for login form
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setLoginData({ ...loginData, [name]: value });
-
-        // Clear errors when changing input
+        const {name, value} = e.target;
+        setLoginData({...loginData, [name]: value});
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: null,
         }));
     };
 
-    // Handle form submission for login
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await login(loginData);
-            // Reset form data and error messages after successful operation
-            setLoginData({ username: '', password: '' });
-            // Navigate to the home page after successful login
+            setLoginData({username: '', password: ''});
             navigate('/');
         } catch (error) {
             // Handle error response from server
             if (error.message.includes('Invalid credentials')) {
-                setErrors({ username: 'Invalid username or password', password: 'Invalid username or password' });
+                setErrors({username: 'Invalid username or password', password: 'Invalid username or password'});
             } else {
                 console.log(error.message);
             }
@@ -64,12 +60,11 @@ const Login = () => {
                 throw new Error(errorData.message || 'Login failed');
             }
 
-            // Handle the successful login response
             const responseData = await response.json();
             console.log('Logged in successfully:', responseData);
-            
+
             // Store token or user data as needed (e.g., save token in local storage)
-            const { token } = responseData;
+            const {token} = responseData;
             if (token) {
                 localStorage.setItem('jwtToken', token);
             }

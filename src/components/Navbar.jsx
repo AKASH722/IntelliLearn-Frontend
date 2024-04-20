@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
-    // State to handle the mobile menu toggle
     const [isOpen, setIsOpen] = useState(false);
 
-    // Function to handle toggling the mobile menu
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    // Placeholder function for handling logout
     const handleLogout = () => {
-        // Add your logout logic here
-        console.log("Logged out");
-        // Example: redirect to login page or perform other logout actions
+        //     delete jwt token and redirect to login
     };
 
     return (
         <nav className="bg-gray-800 p-4">
             <div className="container mx-auto flex justify-between items-center">
-                <Link to='/'><div className="text-white text-xl font-bold" >
-                    IntelliLearn
-                </div></Link>
-                {/* Desktop menu */}
+                <Link to='/'>
+                    <div className="text-white text-xl font-bold">
+                        IntelliLearn
+                    </div>
+                </Link>
                 <div className="hidden md:flex space-x-4">
                     <Link to="/" className="text-white hover:text-gray-300">Home</Link>
                     <Link to="/leaderboard" className="text-white hover:text-gray-300">Leaderboard</Link>
@@ -35,7 +31,7 @@ const Navbar = () => {
                         Logout
                     </button>
                 </div>
-                {/* Mobile menu toggle button */}
+
                 <button
                     className="md:hidden text-white focus:outline-none"
                     onClick={toggleMenu}
@@ -56,7 +52,6 @@ const Navbar = () => {
                     </svg>
                 </button>
             </div>
-            {/* Mobile menu */}
             {isOpen && (
                 <div className="md:hidden mt-4">
                     <Link to="/" className="block text-white hover:text-gray-300 p-2">Home</Link>
