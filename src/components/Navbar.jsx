@@ -1,21 +1,27 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+
+import { Link, useNavigate } from 'react-router-dom';
+import {useState} from "react";
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] =     useState(false);
+    const navigate = useNavigate();  // Import and initialize useNavigate hook
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     const handleLogout = () => {
-        //     delete jwt token and redirect to login
+        // Remove JWT token from local storage
+        localStorage.removeItem('jwtToken');
+
+        // Redirect the user to the login page
+        navigate('/login');
     };
 
     return (
-        <nav className="bg-gray-800 p-4">
+        <nav className="bg-gray-800 p-5">
             <div className="container mx-auto flex justify-between items-center">
-                <Link to='/'>
+                <Link to="/">
                     <div className="text-white text-xl font-bold">
                         IntelliLearn
                     </div>
