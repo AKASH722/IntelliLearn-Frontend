@@ -99,7 +99,7 @@ const Quiz = () => {
 
     // Render the quiz component
     return (
-        <div className="min-h-[39.5rem] pt-28 justify-center items-center bg-gray-800 pt-12">
+        <div className="min-h-[39.5rem]  justify-center items-center bg-gray-800 pt-12">
             {renderQuiz()}
         </div>
     );

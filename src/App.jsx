@@ -2,7 +2,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Home from "./components/Home.jsx";
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
-import TopicsList from "./components/TopicsList.jsx"; // Assuming router is exported
+import TopicsList from "./components/TopicsList.jsx";
 
 const App = () => {
     return (
