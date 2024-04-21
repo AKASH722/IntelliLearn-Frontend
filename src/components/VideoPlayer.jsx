@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VideoPlayer = ({ videoUrl }) => {
+const VideoPlayer = ({videoUrl}) => {
     return (
         <div className="flex flex-col items-center justify-center h-[39.5rem] bg-gray-800 p-8">
             <div className="w-full max-w-4xl rounded-lg shadow-lg overflow-hidden">

@@ -2,8 +2,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Home from "./components/Home.jsx";
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
-import Quiz from "./components/Quiz.jsx";
-import VideoPlayer from "./components/VideoPlayer.jsx";
 import TopicsList from "./components/TopicsList.jsx"; // Assuming router is exported
 
 const App = () => {
@@ -22,7 +20,7 @@ const App = () => {
                             <Home/>
                             {/*<Quiz />*/}
                             {/*<VideoPlayer videoUrl='https://www.youtube.com/watch?v=KcdE2e-6wNg'/>*/}
-                            {/*<TopicsList />*/}
+                            <TopicsList/>
                         </>
 
                     }

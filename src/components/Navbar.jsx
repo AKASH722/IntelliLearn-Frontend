@@ -1,9 +1,8 @@
-
-import { Link, useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useState} from "react";
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] =     useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();  // Import and initialize useNavigate hook
 
     const toggleMenu = () => {
