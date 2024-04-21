@@ -18,6 +18,13 @@ const VideoPlayer = ({ videoUrl }) => {
                         border: '2px solid #4A5568', // Border with a subtle color
                     }}
                 ></iframe>
+
+            </div>
+            <div>
+                <button
+                    className="bg-transparent hover:bg-blue-900 text-white mt-5 font-semibold hover:text-white py-2 px-4 border-2 border-blue-500 hover:border-blue-500 rounded">
+                    Next
+                </button>
             </div>
         </div>
     );

@@ -27,8 +27,7 @@ const SecNav = () => {
                         <Link
                             key={index}
                             to={`/${title.path}`}
-                            className="text-white p-2 px-4 hover:text-gray-300 border-2 rounded-2xl border-white hover:bg-gray-800"
-                        >
+                            className="bg-transparent hover:bg-blue-900 text-white font-semibold hover:text-white py-2 px-4 border-2 border-blue-500 hover:border-blue-500 rounded">
                             {title.name}
                         </Link>
                     ))}
